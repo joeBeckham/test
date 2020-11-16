@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.5.16;
+
+/**
+ * 用来确保不会部署相同的合约
+ */
+contract Migrations {
+  address public owner;
+  uint public last_completed_migration;
+
+  modifier restricted() {
+    if (msg.sender == owner) _;
+  }
+
+  constructor() public {
+    owner = msg.sender;
+  }
+
+  function setCompleted(uint completed) public restricted {
+    last_completed_migration = completed;
+  }
+}
